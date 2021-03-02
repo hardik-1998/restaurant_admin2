@@ -1,0 +1,153 @@
+<div class="card">
+  <div class="card-header">
+    Enter Details of Food items
+  </div>
+  <div class="card-body">
+    <form novalidate
+          (ngSubmit)="saveItem()"
+          [formGroup] = "addFoodItemForm" >
+
+          <div *ngIf="validMessage != ''">
+            <h3 class="has-info">{{validMessage}}</h3>
+          </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label"
+                  for="foodItemNameId">Name</label>
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="foodItemNameId"
+                   type="text"
+                   placeholder="Name of Item (Required)"
+                   formControlName= "Name"
+                   [ngClass]="{'is-invalid': (addFoodItemForm.get('Name').touched || addFoodItemForm.get('Name').dirty) && !addFoodItemForm.get('Name').valid }" />
+           <span class="invalid-feedback">
+             <span *ngIf="addFoodItemForm.get('Name').errors?.required">
+               Please enter food item name.
+             </span>
+             <span *ngIf="addFoodItemForm.get('Name').errors?.minlength">
+               The food item name must be longer than 2 characters.
+             </span>
+           </span>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label"
+                  for="PriceId">Price</label>
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="PriceId"
+                   type="text"
+                   placeholder="Price of Item (Required)"
+                   formControlName="Price"
+                   [ngClass]="{'is-invalid': (addFoodItemForm.get('Price').touched || addFoodItemForm.get('Price').dirty) && !addFoodItemForm.get('Price').valid }" />
+
+           <span class="invalid-feedback">
+             <span *ngIf="addFoodItemForm.get('Price').errors?.required">
+               Please enter food item price.
+             </span>
+           </span>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label"
+                  for="CategoryId">Category</label>
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="CategoryId"
+                   type="text"
+                   placeholder="Category of Item (Required)"
+                   formControlName="Category"
+                   [ngClass]="{'is-invalid': (addFoodItemForm.get('Category').touched || addFoodItemForm.get('Category').dirty) && !addFoodItemForm.get('Category').valid }" />
+
+           <span class="invalid-feedback">
+             <span *ngIf="addFoodItemForm.get('Category').errors?.required">
+               Please enter food item category.
+             </span>
+             <span *ngIf="addFoodItemForm.get('Category').errors?.minlength">
+              The food item Category must be longer than 3 characters.
+            </span>
+           </span>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label"
+                  for="AvailableId">Available</label>
+                  <div class="col-md-8">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input"
+                           type="radio"
+                           name="inlineRadioOptions"
+                           id="inlineRadio1"
+                           value="yes"
+                           formControlName="Available"
+                           checked>
+                    <label class="form-check-label" for="inlineRadio1">Yes</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input"
+                           type="radio"
+                           name="inlineRadioOptions"
+                           id="inlineRadio2"
+                           value="no"
+                           formControlName="Available">
+                    <label class="form-check-label" for="inlineRadio2">No</label>
+                  </div>
+                  </div>
+
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label"
+                  for="descriptionId">Description</label>
+          <div class="col-md-8">
+            <textarea class="form-control"
+                   id="descriptionId"
+                   placeholder="Describe about item"
+                   formControlName="Description"
+                   [ngClass]="{'is-invalid': (addFoodItemForm.get('Description').touched || addFoodItemForm.get('Description').dirty) && !addFoodItemForm.get('Description').valid }">
+          </textarea>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label"
+                  for="imageId">Image</label>
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="imageId"
+                   type="file"
+                   formControlName="Image"/>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <div class="col-md-4">
+            <button class="btn btn-primary mr-3"
+                    style="width:80px"
+                    type="submit"
+                    title="Save your entered details"
+                    [title]="addFoodItemForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+
+                    [disabled]="!addFoodItemForm.valid">
+              Save
+            </button>
+            <button class="btn btn-outline-secondary mr-3"
+                    style="width:80px"
+                    type="button"
+                    title="Do not add">
+              Cancel
+            </button>
+
+          </div>
+        </div>
+
+        </form>
+  </div>
+</div>
+<br>Dirty: {{ addFoodItemForm.dirty }}
+<br>Touched: {{ addFoodItemForm.touched }}
+<br>Valid: {{ addFoodItemForm.valid }}
