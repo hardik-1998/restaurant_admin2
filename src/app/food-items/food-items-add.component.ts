@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 export class FoodItemsAddComponent implements OnInit {
 
   addFoodItemForm : FormGroup;
-  validMessage: string="";
+  validMessage: boolean=false;
 
   constructor(private fb: FormBuilder,
               private addFoodItemService: AddfooditemService,
@@ -21,31 +21,35 @@ export class FoodItemsAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.addFoodItemForm = this.fb.group({
-      Name: ['', [Validators.required, Validators.minLength(2)]],
-      Price:  ['', [Validators.required]],
-      Category: ['', [Validators.required, Validators.minLength(3)]],
-      Available: 'no',
-      Description: [''],
-      Image: null,
+      name: ['', [Validators.required, Validators.minLength(2)]],
+      price:  ['', [Validators.required]],
+      category: ['', [Validators.required, Validators.minLength(3)]],
+      available:'yes',
+      description: [''],
+      image: null,
+      createDate:null,
+      updateDate:null
     });
   }
 
   saveItem(){
     if(this.addFoodItemForm.valid){
-      this.validMessage="your food Item submitted. Thank U!!!!";
+
       this.addFoodItemService.addfooditemdb(this.addFoodItemForm.value).subscribe(
         data =>{
+          this.validMessage = true;
           this.addFoodItemForm.reset();
           return true;
         },
         error =>{
           return Observable.throw(error);
         }
-
       )
-    }else{
-      this.validMessage="please fill out the form before submitting";
+
     }
+  }
+  closeValidMessage(){
+    this.validMessage = false;
   }
 
 }
