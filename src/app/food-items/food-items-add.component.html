@@ -7,8 +7,11 @@
           (ngSubmit)="saveItem()"
           [formGroup] = "addFoodItemForm" >
 
-          <div *ngIf="validMessage != ''">
-            <h3 class="has-info">{{validMessage}}</h3>
+          <div *ngIf="validMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> Food item added successfully.
+            <button (click)="closeValidMessage()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
 
         <div class="form-group row mb-2">
@@ -19,13 +22,13 @@
                    id="foodItemNameId"
                    type="text"
                    placeholder="Name of Item (Required)"
-                   formControlName= "Name"
-                   [ngClass]="{'is-invalid': (addFoodItemForm.get('Name').touched || addFoodItemForm.get('Name').dirty) && !addFoodItemForm.get('Name').valid }" />
+                   formControlName= "name"
+                   [ngClass]="{'is-invalid': (addFoodItemForm.get('name').touched || addFoodItemForm.get('name').dirty) && !addFoodItemForm.get('name').valid }" />
            <span class="invalid-feedback">
-             <span *ngIf="addFoodItemForm.get('Name').errors?.required">
+             <span *ngIf="addFoodItemForm.get('name').errors?.required">
                Please enter food item name.
              </span>
-             <span *ngIf="addFoodItemForm.get('Name').errors?.minlength">
+             <span *ngIf="addFoodItemForm.get('name').errors?.minlength">
                The food item name must be longer than 2 characters.
              </span>
            </span>
@@ -40,11 +43,11 @@
                    id="PriceId"
                    type="text"
                    placeholder="Price of Item (Required)"
-                   formControlName="Price"
-                   [ngClass]="{'is-invalid': (addFoodItemForm.get('Price').touched || addFoodItemForm.get('Price').dirty) && !addFoodItemForm.get('Price').valid }" />
+                   formControlName="price"
+                   [ngClass]="{'is-invalid': (addFoodItemForm.get('price').touched || addFoodItemForm.get('price').dirty) && !addFoodItemForm.get('price').valid }" />
 
            <span class="invalid-feedback">
-             <span *ngIf="addFoodItemForm.get('Price').errors?.required">
+             <span *ngIf="addFoodItemForm.get('price').errors?.required">
                Please enter food item price.
              </span>
            </span>
@@ -59,14 +62,14 @@
                    id="CategoryId"
                    type="text"
                    placeholder="Category of Item (Required)"
-                   formControlName="Category"
-                   [ngClass]="{'is-invalid': (addFoodItemForm.get('Category').touched || addFoodItemForm.get('Category').dirty) && !addFoodItemForm.get('Category').valid }" />
+                   formControlName="category"
+                   [ngClass]="{'is-invalid': (addFoodItemForm.get('category').touched || addFoodItemForm.get('category').dirty) && !addFoodItemForm.get('category').valid }" />
 
            <span class="invalid-feedback">
-             <span *ngIf="addFoodItemForm.get('Category').errors?.required">
+             <span *ngIf="addFoodItemForm.get('category').errors?.required">
                Please enter food item category.
              </span>
-             <span *ngIf="addFoodItemForm.get('Category').errors?.minlength">
+             <span *ngIf="addFoodItemForm.get('category').errors?.minlength">
               The food item Category must be longer than 3 characters.
             </span>
            </span>
@@ -83,7 +86,7 @@
                            name="inlineRadioOptions"
                            id="inlineRadio1"
                            value="yes"
-                           formControlName="Available"
+                           formControlName="available"
                            checked>
                     <label class="form-check-label" for="inlineRadio1">Yes</label>
                   </div>
@@ -93,7 +96,7 @@
                            name="inlineRadioOptions"
                            id="inlineRadio2"
                            value="no"
-                           formControlName="Available">
+                           formControlName="available">
                     <label class="form-check-label" for="inlineRadio2">No</label>
                   </div>
                   </div>
@@ -107,8 +110,8 @@
             <textarea class="form-control"
                    id="descriptionId"
                    placeholder="Describe about item"
-                   formControlName="Description"
-                   [ngClass]="{'is-invalid': (addFoodItemForm.get('Description').touched || addFoodItemForm.get('Description').dirty) && !addFoodItemForm.get('Description').valid }">
+                   formControlName="description"
+                   [ngClass]="{'is-invalid': (addFoodItemForm.get('description').touched || addFoodItemForm.get('description').dirty) && !addFoodItemForm.get('description').valid }">
           </textarea>
           </div>
         </div>
@@ -120,7 +123,7 @@
             <input class="form-control"
                    id="imageId"
                    type="file"
-                   formControlName="Image"/>
+                   formControlName="image"/>
           </div>
         </div>
 

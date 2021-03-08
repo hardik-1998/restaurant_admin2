@@ -15,6 +15,6 @@ export class AddfooditemService {
 
   addfooditemdb(fooditem){
     let body=JSON.stringify(fooditem);
-    return this.http.post('/server/api/addfooditem', body, httpOptions);
+    return this.http.post('/server/api/fooditem/add', body, httpOptions);
  }
 }
