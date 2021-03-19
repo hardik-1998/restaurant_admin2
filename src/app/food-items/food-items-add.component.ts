@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 export class FoodItemsAddComponent implements OnInit {
 
   addFoodItemForm : FormGroup;
+  image : any = File;
   validMessage: boolean=false;
 
   constructor(private fb: FormBuilder,
@@ -26,16 +27,23 @@ export class FoodItemsAddComponent implements OnInit {
       category: ['', [Validators.required, Validators.minLength(3)]],
       available:'yes',
       description: [''],
-      image: null,
       createDate:null,
       updateDate:null
     });
   }
 
+  onSelectFile(event){
+    const file = event.target.files[0];
+    this.image = file;
+  }
+
   saveItem(){
     if(this.addFoodItemForm.valid){
-
-      this.addFoodItemService.addfooditemdb(this.addFoodItemForm.value).subscribe(
+      const fooditemdata = this.addFoodItemForm.value;
+      const formData = new FormData();
+      formData.append('fooditemdata', JSON.stringify(fooditemdata));
+      formData.append('file', this.image);
+      this.addFoodItemService.addfooditemdb(formData).subscribe(
         data =>{
           this.validMessage = true;
           this.addFoodItemForm.reset();

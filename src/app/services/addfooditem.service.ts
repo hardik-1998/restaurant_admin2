@@ -13,8 +13,7 @@ export class AddfooditemService {
 
   constructor(private http:HttpClient) { }
 
-  addfooditemdb(fooditem){
-    let body=JSON.stringify(fooditem);
-    return this.http.post('/server/api/fooditem/add', body, httpOptions);
+  addfooditemdb(formData:FormData): Observable <any>{
+    return this.http.post('/server/api/fooditem/add', formData);
  }
 }
