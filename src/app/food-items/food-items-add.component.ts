@@ -10,11 +10,12 @@ import { Observable } from 'rxjs';
   styleUrls: ['./food-items-add.component.css']
 })
 export class FoodItemsAddComponent implements OnInit {
-
+  public imagePath;
   addFoodItemForm : FormGroup;
   image : any = File;
   validMessage: boolean=false;
-
+  message : String;
+  imgURL: any;
   constructor(private fb: FormBuilder,
               private addFoodItemService: AddfooditemService,
               private route: ActivatedRoute,
@@ -33,8 +34,24 @@ export class FoodItemsAddComponent implements OnInit {
   }
 
   onSelectFile(event){
-    const file = event.target.files[0];
-    this.image = file;
+    if(event.target.files.length>0){
+      const file = event.target.files[0];
+      this.image = file;
+
+      var mimeType = event.target.files[0].type;
+      if(mimeType.match(/image\/*/) == null){
+        this.message="Only images are supported";
+        return;
+      }
+
+    var reader = new FileReader();
+    this.imagePath = file;
+    reader.readAsDataURL(file);
+      reader.onload = (_event) => {
+        this.imgURL = reader.result;
+      }
+
+    }
   }
 
   saveItem(){
@@ -47,6 +64,7 @@ export class FoodItemsAddComponent implements OnInit {
         data =>{
           this.validMessage = true;
           this.addFoodItemForm.reset();
+          this.imgURL= false;
           return true;
         },
         error =>{
