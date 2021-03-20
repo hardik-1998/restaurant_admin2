@@ -122,7 +122,8 @@
                    id="imageId"
                    type="file"
                    accept="image/*"
-                   (change)="onSelectFile($event)"/>
+                   (change)="onSelectFile($event)">
+                   <img [src]="imgURL" height="200" *ngIf="imgURL">
           </div>
         </div>
 

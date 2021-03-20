@@ -1,1 +1,44 @@
-<p>food-items-list works!</p>
+<div class="card">
+  <div class="card-header">
+    {{pageTitle}}
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table mb-0">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Available</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor = "let fooditems of foodItems">
+            <td>
+              <img src = "{{'/server/api/fooditem/imagefooditem/'+ fooditems.id}}"
+                  [title]="fooditems.name"
+                  style = "height :100px;width:100px">
+            </td>
+            <td>
+              <a>{{fooditems.name}}</a>
+            </td>
+            <td>
+              {{fooditems.category}}
+            </td>
+            <td>
+              {{fooditems.price | currency:"INR":"symbol"}}
+            </td>
+            <td>{{fooditems.available}}</td>
+            <td>
+              <button class="btn btn-outline-primary btn-sm">
+                Edit
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
