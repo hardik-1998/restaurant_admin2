@@ -16,6 +16,10 @@ export class AddfooditemService {
     return this.http.get('/server/api/fooditem/fooditems');
   }
 
+  getfooditemdb(id: number): Observable <any>{
+    return this.http.get('/server/api/fooditem/find/'+ id)
+  }
+
   addfooditemdb(formData:FormData): Observable <any>{
     return this.http.post('/server/api/fooditem/add', formData);
  }

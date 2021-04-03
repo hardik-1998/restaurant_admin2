@@ -5,6 +5,7 @@ import { FoodItemsDetailsComponent } from './food-items-details.component';
 import { FoodItemsEditComponent } from './food-items-edit.component';
 import { FoodItemsListComponent } from './food-items-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -12,7 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [FoodItemsAddComponent, FoodItemsDetailsComponent, FoodItemsEditComponent, FoodItemsListComponent],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ]
 })
 export class FoodItemsModule { }

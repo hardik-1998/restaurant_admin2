@@ -22,7 +22,9 @@
                   style = "height :100px;width:100px">
             </td>
             <td>
-              <a>{{fooditems.name}}</a>
+              <a [routerLink]="['/fooditemlist', fooditems.id]">
+                {{fooditems.name}}
+              </a>
             </td>
             <td>
               {{fooditems.category}}

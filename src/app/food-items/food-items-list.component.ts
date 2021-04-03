@@ -23,7 +23,7 @@ export class FoodItemsListComponent implements OnInit {
          { this.foodItems= data;
          },
         err => console.error(err),
-        ()=>console.log('fooditems loaded'),
+        ()=>console.log('fooditems loaded')
     );
   }
 }
